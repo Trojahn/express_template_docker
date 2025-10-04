@@ -1,0 +1,31 @@
+{
+  "name": "express-backend-postgres",
+  "version": "1.0.0",
+  "description": "Base project for backend development using Node, Express, and PostgreSQL.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon --legacy-watch --watch src src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Trojahn/express_template_docker.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "postgresql",
+    "backend"
+  ],
+  "author": "Tiago H. Trojahn",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.16.3",
+    "nodemon": "^3.1.10",
+    "cors" : "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
