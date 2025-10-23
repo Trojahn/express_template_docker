@@ -40,7 +40,11 @@ express-backend-postgres
    ```
    docker compose up --build
    ```
-
+4. Caso seja necessário resetar o banco de dados, execute:
+   ```
+   docker compose down -v
+   ```
+   
 ## Uso
 
 - A aplicação estará disponível em `http://localhost:3000`.
