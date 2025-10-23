@@ -17,4 +17,22 @@ router.get('/usuarios', async (req, res) => {
     }
 });
 
+// Rota de exemplo para executar uma transacao
+router.get('/transacao/:id', async (req, res) => {
+    const id = req.params.id;
+
+    // Exemplo de operação a ser realizada (dois UPDATES e um SELECT)
+    const result = await db.transaction(async (conexao) => {
+        await conexao.query("UPDATE usuarios SET nome = nome || '_teste' WHERE id=$1", [id]);
+        await conexao.query("UPDATE usuarios SET senha = senha || '_teste' WHERE id=$1", [id]);
+
+        const resultado = await conexao.query("SELECT * FROM usuarios WHERE id=$1", [id]);
+        return resultado.rows[0];
+    });
+    if (result) {
+        return res.json({ msg: "Usuário atualizado com sucesso!", data: result });
+    }
+    return res.status(500).json({ msg: "Erro de operação"});
+});
+
 module.exports = router;
