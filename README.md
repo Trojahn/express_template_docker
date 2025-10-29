@@ -7,12 +7,13 @@ Este projeto é um template para desenvolvimento de aplicações de backend util
 ```
 express-backend-postgres
 ├── src
-│   ├── index.js          # Ponto de entrada da aplicação
+│   ├── index.js         # Ponto de entrada da aplicação
 │   ├── db.js            # Configuração da conexão com o banco de dados
+│   ├── swagger.js       # Configuração do swagger
 │   └── routes
-│       └── rota.js    # Definição das rotas da aplicação
+│       └── rota.js      # Definição das rotas da aplicação
 ├── sql
-│   └── init.sql        # Script SQL para inicialização do banco de dados
+│   └── init.sql         # Script SQL para inicialização do banco de dados
 ├── Dockerfile           # Instruções para construir a imagem Docker
 ├── docker-compose.yml   # Configuração dos serviços da aplicação
 ├── .dockerignore        # Arquivos a serem ignorados na construção da imagem Docker
@@ -40,14 +41,16 @@ express-backend-postgres
    ```
    docker compose up --build
    ```
-4. Caso seja necessário resetar o banco de dados, execute:
+4. Caso seja necessário resetar o banco de dados, execute os comandos abaixo.
    ```
    docker compose down -v
+   docker compose up --build
    ```
    
 ## Uso
 
 - A aplicação estará disponível em `http://localhost:3000`.
+- A documentação do back-end está disponível em `http://localhost:3000/api`
 
 ## Licença
 
