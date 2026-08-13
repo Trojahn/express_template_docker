@@ -6,23 +6,40 @@ services:
     volumes:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
-    ports:
-      - "3000:3000"
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=postgres://usuario:senha@database:5432/bancodados
+      - PORT=3000
+    ports:
+      - "${PORT:-3000}:3000"
     depends_on:
-      - database
+      database:
+        condition: service_healthy
 
   database:
-    image: postgres:18
+    image: postgres:18-alpine
     volumes:
       - db_data:/var/lib/postgresql
-      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRES_USER=usuario
       - POSTGRES_PASSWORD=senha
       - POSTGRES_DB=bancodados
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  pgweb:
+    image: sosedoff/pgweb
+    ports:
+      - "${PGWEB_PORT:-8081}:8081"
+    environment:
+      - PGWEB_DATABASE_URL=postgres://usuario:senha@database:5432/bancodados?sslmode=disable
+    depends_on:
+      database:
+        condition: service_healthy
 
 volumes:
   db_data:

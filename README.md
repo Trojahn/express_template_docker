@@ -1,57 +1,28 @@
-# Express Template Docker
+# Template Node + Express + PostgreSQL
 
-Este projeto é um template para desenvolvimento de aplicações de backend utilizando Node.js, Express e PostgreSQL. Abaixo estão as instruções para instalação e uso.
+> Template usado para o desenvolvimento de backends utilizando Node, Express e PostgreSQL.
 
-## Estrutura do Projeto
+## ⚠️ Avisos
 
+Este sistema foi configurado para ambiente de desenvolvimento. Para implantação em produção, revise as variáveis de ambiente, configurações de CORS, segurança do banco de dados, entre outros.
+
+## 🚀 Como utilizar este template?
+
+1. Preencha o arquivo `init.sql` com o banco de dados desejado.
+1. Após preenchido, execute o seguinte comando:
 ```
-express-backend-postgres
-├── src
-│   ├── index.js         # Ponto de entrada da aplicação
-│   ├── db.js            # Configuração da conexão com o banco de dados
-│   ├── swagger.js       # Configuração do swagger
-│   └── routes
-│       └── rota.js      # Definição das rotas da aplicação
-├── sql
-│   └── init.sql         # Script SQL para inicialização do banco de dados
-├── Dockerfile           # Instruções para construir a imagem Docker
-├── docker-compose.yml   # Configuração dos serviços da aplicação
-├── .dockerignore        # Arquivos a serem ignorados na construção da imagem Docker
-├── .gitignore           # Arquivos a serem ignorados pelo Git
-├── package.json         # Configuração do npm e dependências
-└── README.md            # Documentação do projeto
+docker compose up --build -d
 ```
 
-## Pré-requisitos
+Caso queira resetar ou recriar o banco de dados (lembre-se que os dados atuais serão perdidos!), execute o comando:
 
-- Docker
+```
+docker compose down -v
+```
 
-## Instalação
+Após inicializado, o webservice pode ser acessado em `http://localhost:3000/`. A interface gráfica de controle do banco de dados pode ser acessada em `http://localhost:8081`.
 
-1. Clone o repositório:
-   ```
-   git clone https://github.com/Trojahn/express_template_docker.git
-   cd express_template_docker
-   ```
-   
-2. Configure o banco de dados:
-   - Crie um banco de dados PostgreSQL no arquivo `sql/init.sql`.
 
-3. Para iniciar a aplicação com Docker, execute:
-   ```
-   docker compose up --build
-   ```
-4. Caso seja necessário resetar o banco de dados, execute os comandos abaixo.
-   ```
-   docker compose down -v
-   docker compose up --build
-   ```
-   
-## Uso
+## Deploy
 
-- A aplicação estará disponível em `http://localhost:3000`.
-- A documentação do back-end está disponível em `http://localhost:3000/api`
-
-## Licença
-
-Este projeto está licenciado sob a Licença MIT.
+Configure os detalhes de deploy no arquivo `.env`, seguindo o exemplo presente em `.env.example`.

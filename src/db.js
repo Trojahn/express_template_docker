@@ -1,11 +1,11 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    user: 'usuario',
-    host: 'database',
-    database: 'bancodados',
-    password: 'senha',
-    port: 5432,
+  host: process.env.DB_HOST || "database",
+  user: process.env.DB_USER || "usuario",
+  password: process.env.DB_PASS || "senha",
+  database: process.env.DB_NAME || "bancodados",
+  port: process.env.DB_PORT || 5432,
 });
 
 // Função usada para operações ACID simples
