@@ -3,8 +3,7 @@ const router = express.Router();
 const db = require("../db");
 
 router.get("/", (req, res) => {
-  res.send("Bem vindo ao express_template_docker!!!");
+  res.status(200).json({ msg: "Bem vindo ao express_template_docker!!!" });
 });
-
 
 module.exports = router;

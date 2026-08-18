@@ -1,8 +1,1 @@
-CREATE TABLE IF NOT EXISTS usuarios (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(50) NOT NULL UNIQUE,
-    senha VARCHAR(255) NOT NULL,
-    data TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
-
-INSERT INTO usuarios (nome, senha) VALUES ('admin', 'admin123');
+-- Preencha com o SQL de inicialização do 
